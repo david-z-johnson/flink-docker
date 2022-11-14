@@ -94,6 +94,7 @@ RUN chmod 755 ./plugins/s3-fs-presto/flink-s3-fs-presto-1.15.2.jar
 
 # Configure container
 COPY docker-entrypoint.sh /
+RUN chmod 755 /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 EXPOSE 6123 8081
 CMD ["help"]
