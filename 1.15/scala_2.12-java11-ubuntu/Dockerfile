@@ -86,6 +86,11 @@ RUN set -ex; \
   sed -i 's/jobmanager.bind-host: localhost/jobmanager.bind-host: 0.0.0.0/g' $FLINK_HOME/conf/flink-conf.yaml; \
   sed -i 's/taskmanager.bind-host: localhost/taskmanager.bind-host: 0.0.0.0/g' $FLINK_HOME/conf/flink-conf.yaml; \
   sed -i '/taskmanager.host: localhost/d' $FLINK_HOME/conf/flink-conf.yaml;
+  
+# add flink s3 lib
+RUN mkdir ./plugins/s3-fs-presto
+ADD https://repo1.maven.org/maven2/org/apache/flink/flink-s3-fs-presto/1.15.2/flink-s3-fs-presto-1.15.2.jar ./plugins/s3-fs-presto/
+RUN chmod 755 ./plugins/s3-fs-presto/flink-s3-fs-presto-1.15.2.jar
 
 # Configure container
 COPY docker-entrypoint.sh /
